@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/data/my_location.dart';
 import 'package:weather_app/data/network.dart';
 import 'package:weather_app/screens/weather_screen.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const apiKey = '47e5849aa6e840d8c3ed763847ed0fab';
 
@@ -24,14 +25,12 @@ class _LoadingState extends State<Loading> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
+      backgroundColor: Colors.amber,
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {},
-          child: const Text(
-            'Get my location',
-            style: TextStyle(color: Colors.white),
-          ),
+        child: SpinKitFadingCircle(
+          color: Colors.white,
+          size: 80,
         ),
       ),
     );
