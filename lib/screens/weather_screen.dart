@@ -24,6 +24,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
   late Widget airIcon;
   late Widget airState;
   var date = DateTime.now();
+  late double pm2_5;
+  late double pm10;
 
   @override
   initState() {
@@ -35,16 +37,20 @@ class _WeatherScreenState extends State<WeatherScreen> {
     description = weatherData['weather'][0]['description'];
     int condition = weatherData['weather'][0]['id'];
     int index = airData['list'][0]['main']['aqi'];
-    print(description);
+    //print(description);
     double temp2 = weatherData['main']['temp'];
     temp = temp2.round();
     cityName = weatherData['name'];
     icon = model.getWeatherIcon(condition);
     airIcon = model.getAirIcon(index);
     airState = model.getAirCondition(index);
+    pm10 = airData['list'][0]['components']['pm10']; // 미세먼지 농도
+    pm2_5 = airData['list'][0]['components']['pm2_5']; // 초미세먼지 농도
 
-    print(temp);
-    print(cityName);
+    //print(temp);
+    //print(cityName);
+    print(pm2_5);
+    print(pm10);
   }
 
   String getSystemTime() {
@@ -116,7 +122,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 children: [
                                   TimerBuilder.periodic((Duration(minutes: 1)),
                                       builder: (context) {
-                                    print('${getSystemTime()}');
+                                    //print('${getSystemTime()}');
                                     return Text(
                                       '${getSystemTime()}',
                                       style: GoogleFonts.lato(
@@ -210,7 +216,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                   height: 10,
                                 ),
                                 Text(
-                                  '174.7',
+                                  pm10.toString(),
                                   style: GoogleFonts.lato(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
@@ -244,7 +250,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                   height: 10,
                                 ),
                                 Text(
-                                  '84.03',
+                                  pm2_5.toString(),
                                   style: GoogleFonts.lato(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,

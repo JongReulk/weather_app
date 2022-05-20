@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Model {
+
   Widget getWeatherIcon(int condition) {
     if (condition < 300) {
       return SvgPicture.asset(
@@ -24,16 +25,12 @@ class Model {
         'svg/climacon-sun.svg',
         color: Colors.black87,
       );
-    } else if (condition <= 804) {
+    } else {
       return SvgPicture.asset(
         'svg/climacon-cloud_sun.svg',
         color: Colors.black87,
       );
     }
-    return SvgPicture.asset(
-      'svg/icon.svg',
-      color: Colors.black87,
-    );
   }
 
   Widget getAirIcon(int index) {
@@ -49,17 +46,15 @@ class Model {
     } else if(index == 4){
       return Image.asset('image/poor.png',
         width: 37, height: 37,);
-    } else if(index == 5){
+    } else {
       return Image.asset('image/bad.png',
         width: 37, height: 37,);
     }
-    return Image.asset('image/moderate.png',
-      width: 37, height: 37,);
   }
 
   Widget getAirCondition(int index) {
     if(index == 1){
-      return Text(
+      return const Text(
         '매우좋음',
         style: TextStyle(
           color: Colors.indigo,
@@ -67,7 +62,7 @@ class Model {
         ),
       );
     } else if(index == 2){
-      Text(
+      return const Text(
         '좋음',
         style: TextStyle(
             color: Colors.indigo,
@@ -75,7 +70,7 @@ class Model {
         ),
       );
     } else if(index == 3){
-      Text(
+      return const Text(
         '보통',
         style: TextStyle(
             color: Colors.indigo,
@@ -83,15 +78,15 @@ class Model {
         ),
       );
     } else if(index == 4){
-      Text(
+      return const Text(
         '나쁨',
         style: TextStyle(
             color: Colors.indigo,
             fontWeight: FontWeight.bold
         ),
       );
-    } else if(index == 5){
-      Text(
+    } else {
+      return const Text(
         '매우나쁨',
         style: TextStyle(
             color: Colors.indigo,
@@ -99,12 +94,5 @@ class Model {
         ),
       );
     }
-    return Text(
-      '보통',
-      style: TextStyle(
-          color: Colors.indigo,
-          fontWeight: FontWeight.bold
-      ),
-    );
   }
 }
